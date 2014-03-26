@@ -14,6 +14,9 @@
 (defun ceasar-encrypt (str shift)
   (map-into (make-string (length str)) (lambda (c) (get-char-with-shift c shift)) str))
 
+(defun ceasar-decrypt (str shift)
+  (ceasar-encrypt str (- 0 shift)))
+
 (ceasar-encrypt (ceasar-encrypt "ab c" 28) -28)
 
 
