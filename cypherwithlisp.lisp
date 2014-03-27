@@ -25,8 +25,6 @@
 (defun reverse-cypher (msg)
   (reverse msg))
 
-(reverse-cypher "123")
-
 (defconstant +letters+ "abcdefghijklmnopqrstuvwxyz")
 
 (defun get-char-with-shift (c shift)
@@ -42,7 +40,6 @@
   (ceasar-encrypt str (- 0 shift)))
 
 (ceasar-encrypt (ceasar-encrypt "ab c" 28) -28)
-
 
 (defun transposition-encrypt (msg key)
   "Transpose characters in msg by size of key"
@@ -67,9 +64,3 @@
     (loop for c across src do (vector-push c array)) array))
 
 (transposition-encrypt "Common sense is not so common." 8)
-
-(defun transposition-decrypt (msg key)
-  
-)
-
-(ceiling 10 8)
