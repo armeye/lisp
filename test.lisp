@@ -23,11 +23,13 @@
 ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 (defmacro curry (f val &optional (fnam nil))
+  "Left curry f with val. Gives back a lambda. Additional fnam for a defun with fnam."
   (if fnam
       `(defun ,fnam (&rest x) (apply ,f ,val x))
       `(lambda (&rest x) (apply ,f ,val x))))
 
 (defmacro compose (f1 f2)
+  "Compose 2 functions left to right"
   `(lambda (x) (funcall ,f1 (funcall ,f2 x))))
 
 (defun take (list n)
