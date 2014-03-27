@@ -52,21 +52,28 @@
 
 (destructuring-bind (a &rest b) (list 1 2 3 4) (princ b))
 
-(defun take (list n) 
+(defun take (list n)
+  "Take first n elements form list"
   (subseq list 0 n))
 
-(defun drop (list n) 
+(defun drop (list n)
+  "Drop first n elements from list"
   (subseq list n))
 
-(defun take-right (list n) 
+(defun take-right (list n)
+  "Take last n elements from list"
   (subseq list (- (length list) n)))
 
-(defun drop-right (list n) 
+(defun drop-right (list n)
+  "Drop last n elements from list"
   (subseq list 0 (- (length list) n)))
 
-(defun split-at (list n) (values (take list n) (drop list n)))
+(defun split-at (list n)
+  "Split list in two at n"
+  (values (take list n) (drop list n)))
 
 (defmacro with-collectors (collectors &body rest)
+  "Provide a set of collectorsto a function body"
   (let ((gsyms (mapcar (lambda (_)
 			 (declare (ignore _))
 			 (gensym)) collectors)))
