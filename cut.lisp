@@ -8,8 +8,9 @@
 
 (defmacro cut (f &rest args)
   "curry on steroids. you can curry arbitrary arguments of a function by substituting them with <>"
- (multiple-value-bind (pargs largs) (cut-helper args)
-   `(lambda (,@largs) (funcall ,f ,@pargs))))
+  (unless (functionp f) (error "first argument not a function"))
+  (multiple-value-bind (pargs largs) (cut-helper args)
+    `(lambda (,@largs) (funcall ,f ,@pargs))))
 
 (defun cut-helper (args)
   "Helper function for cut. process a list args into args for the function and for the lambda. This will not be exported"
