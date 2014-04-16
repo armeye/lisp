@@ -1,0 +1,15 @@
+(defconstant +placeholder+ '<>)
+
+(defmacro cut (f &rest args)
+ (multiple-value-bind (pargs largs) (cut-helper args)
+   `(lambda (,@largs) (funcall ,f ,@pargs))))
+
+(defun cut-helper (args)
+  (let ((args-processed (list))
+	(args-lambda (list)))
+    (loop for i in args do (if (equalp i +placeholder+)
+			       (let ((sym (gensym "CUT")))
+				 (progn (push sym args-processed)
+				   (push sym args-lambda)))
+			       (push i args-processed))
+	 finally (return (values (reverse args-processed) (reverse args-lambda))))))
