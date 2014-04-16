@@ -1,3 +1,9 @@
+(defpackage :pk.srfi-26
+  (:use :common-lisp)
+  (:export :cut))
+
+(in-package :pk.srfi-26)
+
 (defconstant +placeholder+ '<>)
 
 (defmacro cut (f &rest args)
