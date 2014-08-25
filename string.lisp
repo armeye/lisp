@@ -15,13 +15,6 @@
 				      (subseq string (+ index (length (car entry))))))))
   string)
 
-(with-input-from-string (s "123456789")
-  (let ((str (make-array 3 :initial-element nil)))
-    (loop for i = 0 then 2 while (< i 9) do 
-	 (read-sequence str s :start i :end (+ i 3))
-	 (print str))))
-
-
 (defmacro read-file-by-line (file l &body b)
   (let ((s (gensym)))
     `(with-open-file (,s (merge-pathnames ,file))
